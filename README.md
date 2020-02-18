@@ -11,13 +11,13 @@ utilities: assembler, linker and simulator.
 ### quick start
 ```shell script
 # clone repository
-git clone TODOD
+git clone https://github.com/roycrippen/sicxe.git
 
 # build 
 sh build.sh
 
 # run tests
-cd cmake-build-release/tests
+cd cmake-build-debug/tests
 ./sicxe_tests
 ```
 
