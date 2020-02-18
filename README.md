@@ -5,7 +5,7 @@ SIC/XE computer implemented in VHDL for the Digilent Nexys 2 board and system
 utilities: assembler, linker and simulator.
 
 ### requirements
-[cmake >= v2.9](https://cmake.org/) <br>
+[cmake >= v3.10](https://cmake.org/) <br>
 [gcc >= 7.4.x](https://gcc.gnu.org/)
 
 ### quick start
