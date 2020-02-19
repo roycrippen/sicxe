@@ -44,5 +44,18 @@ $ ./sicsim
 $ ./sicvm --help
 ```
 
-#### test files
-test assembly files: [tests/testdata](tests/testdata)
+#### run a demo
+```shell script
+# goto demo dir
+cd demos/SicDemos/bf
+
+# assemble
+../../../cmake-build-release/src/sicasm bf.asm
+
+# run in vm
+../../../cmake-build-release/src/sicvm bf.obj 
+
+# paste bf command from README.md
+# powers of 2
+# >++++++++++>>+<+[[+++++[>++++++++<-]>.<++++++[>--------<-]+<<]>.>[->[<++>-[<++>-[<++>-[<++>-[<-------->>[-]++<-[<++>-]]]]]]<[>+<-]+>>]<<]
+```
