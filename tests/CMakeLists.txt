@@ -1,5 +1,4 @@
 set(GTEST_DIR ${PROJECT_SOURCE_DIR}/src/third-party/googletest)
-message(GTEST_DIR = ${GTEST_DIR})
 file(GLOB SOURCES *.cc)
 file(COPY testdata DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
@@ -10,8 +9,8 @@ add_executable(sicxe_tests EXCLUDE_FROM_ALL ${SOURCES})
 target_link_libraries(sicxe_tests "gtest" "gtest_main" "pthread"
         assembler_lib linker_lib common_lib)
 
-add_custom_target(test
+add_custom_target(my_tests
         COMMAND ${CMAKE_CURRENT_BINARY_DIR}/sicxe_tests
         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
 
-add_dependencies(test sicxe_tests)
+add_dependencies(my_tests sicxe_tests)

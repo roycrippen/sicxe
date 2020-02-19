@@ -171,7 +171,7 @@ static CharFormat PrintAsCharLiteralTo(Char c, ostream* os) {
       *os << "\\r";
       break;
     case L' ':
-      *os << "\ ";
+      *os << "\\ ";
       break;
     case L'\v':
       *os << "\\v";

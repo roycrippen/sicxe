@@ -4242,7 +4242,7 @@ std::string JsonUnitTestResultPrinter::EscapeJson(const std::string& str) {
         m << "\\b";
         break;
       case ' ':
-        m << "\ ";
+        m << "\\ ";
         break;
       case '\n':
         m << "\\n";
