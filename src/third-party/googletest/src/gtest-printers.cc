@@ -170,8 +170,8 @@ static CharFormat PrintAsCharLiteralTo(Char c, ostream* os) {
     case L'\r':
       *os << "\\r";
       break;
-    case L'\t':
-      *os << "\\t";
+    case L' ':
+      *os << "\ ";
       break;
     case L'\v':
       *os << "\\v";
@@ -365,7 +365,7 @@ bool ContainsUnprintableControlCodes(const char* str, size_t length) {
     unsigned char ch = *s++;
     if (std::iscntrl(ch)) {
         switch (ch) {
-        case '\t':
+        case ' ':
         case '\n':
         case '\r':
           break;

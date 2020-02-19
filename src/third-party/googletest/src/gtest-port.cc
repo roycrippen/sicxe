@@ -782,7 +782,7 @@ bool IsAsciiPunct(char ch) {
   return IsInSet(ch, "^-!\"#$%&'()*+,./:;<=>?@[\\]_`{|}~");
 }
 bool IsRepeat(char ch) { return IsInSet(ch, "?*+"); }
-bool IsAsciiWhiteSpace(char ch) { return IsInSet(ch, " \f\n\r\t\v"); }
+bool IsAsciiWhiteSpace(char ch) { return IsInSet(ch, " \f\n\r \v"); }
 bool IsAsciiWordChar(char ch) {
   return ('a' <= ch && ch <= 'z') || ('A' <= ch && ch <= 'Z') ||
       ('0' <= ch && ch <= '9') || ch == '_';
@@ -805,7 +805,7 @@ bool AtomMatchesChar(bool escaped, char pattern_char, char ch) {
       case 'r': return ch == '\r';
       case 's': return IsAsciiWhiteSpace(ch);
       case 'S': return !IsAsciiWhiteSpace(ch);
-      case 't': return ch == '\t';
+      case 't': return ch == ' ';
       case 'v': return ch == '\v';
       case 'w': return IsAsciiWordChar(ch);
       case 'W': return !IsAsciiWordChar(ch);

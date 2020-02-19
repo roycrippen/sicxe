@@ -119,12 +119,12 @@ TEST_F(InstructionDBTest, LoadFromFile) {
   InstructionDB db;
   TestLoadFromFile(vector<string>{
         "0x10  LDA    FS34   LOAD_W",
-        "0x14  STA  \t  FS34   STORE_W",
+        "0x14  STA     FS34   STORE_W",
         "",
         "0x18  ADDR   F2   REG_REG   ",
         "0x19  CLEAR  F1   NONE  ",
-        " \t\t  ",
-        "0x1a  SHIFTL\t F2  REG_N",
+        "     ",
+        "0x1a  SHIFTL  F2  REG_N",
         "100   MOVR   F2  REG_REG",
       },
       true, "", &db);

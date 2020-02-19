@@ -132,7 +132,7 @@ bool InstructionDB::LoadFromFile(const TextFile& file, InstructionDB* instructio
     vector<pair<string, TextFile::Position> > tokens;
     string current_token;
     for (size_t column = 0; column <= line.size(); column++) {
-      if (column == line.size() || line[column] == ' ' || line[column] == '\t') {
+      if (column == line.size() || line[column] == ' ' || line[column] == ' ') {
         if (!current_token.empty()) {
           tokens.push_back(make_pair(current_token, TextFile::Position(row,
               column - current_token.size(), current_token.size())));

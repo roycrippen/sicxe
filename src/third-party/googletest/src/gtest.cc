@@ -4241,8 +4241,8 @@ std::string JsonUnitTestResultPrinter::EscapeJson(const std::string& str) {
       case '\b':
         m << "\\b";
         break;
-      case '\t':
-        m << "\\t";
+      case ' ':
+        m << "\ ";
         break;
       case '\n':
         m << "\\n";
@@ -6317,11 +6317,11 @@ std::string TempDir() {
 #endif
 
 #if GTEST_OS_WINDOWS_MOBILE
-  return "\\temp\\";
+  return "\ emp\\";
 #elif GTEST_OS_WINDOWS
   const char* temp_dir = internal::posix::GetEnv("TEMP");
   if (temp_dir == nullptr || temp_dir[0] == '\0')
-    return "\\temp\\";
+    return "\ emp\\";
   else if (temp_dir[strlen(temp_dir) - 1] == '\\')
     return temp_dir;
   else

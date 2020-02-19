@@ -288,7 +288,7 @@ TEST(PrintCharTest, PlainChar) {
   EXPECT_EQ("'\\f' (12, 0xC)", Print('\f'));
   EXPECT_EQ("'\\n' (10, 0xA)", Print('\n'));
   EXPECT_EQ("'\\r' (13, 0xD)", Print('\r'));
-  EXPECT_EQ("'\\t' (9)", Print('\t'));
+  EXPECT_EQ("'\ ' (9)", Print(' '));
   EXPECT_EQ("'\\v' (11, 0xB)", Print('\v'));
   EXPECT_EQ("'\\x7F' (127)", Print('\x7F'));
   EXPECT_EQ("'\\xFF' (255)", Print('\xFF'));
@@ -330,7 +330,7 @@ TEST(PrintBuiltInTypeTest, Wchar_t) {
   EXPECT_EQ("L'\\f' (12, 0xC)", Print(L'\f'));
   EXPECT_EQ("L'\\n' (10, 0xA)", Print(L'\n'));
   EXPECT_EQ("L'\\r' (13, 0xD)", Print(L'\r'));
-  EXPECT_EQ("L'\\t' (9)", Print(L'\t'));
+  EXPECT_EQ("L'\ ' (9)", Print(L' '));
   EXPECT_EQ("L'\\v' (11, 0xB)", Print(L'\v'));
   EXPECT_EQ("L'\\x7F' (127)", Print(L'\x7F'));
   EXPECT_EQ("L'\\xFF' (255)", Print(L'\xFF'));
@@ -408,9 +408,9 @@ TEST(PrintCStringTest, Null) {
 
 // Tests that C strings are escaped properly.
 TEST(PrintCStringTest, EscapesProperly) {
-  const char* p = "'\"?\\\a\b\f\n\r\t\v\x7F\xFF a";
+  const char* p = "'\"?\\\a\b\f\n\r \v\x7F\xFF a";
   EXPECT_EQ(PrintPointer(p) + " pointing to \"'\\\"?\\\\\\a\\b\\f"
-            "\\n\\r\\t\\v\\x7F\\xFF a\"",
+            "\\n\\r\ \\v\\x7F\\xFF a\"",
             Print(p));
 }
 
@@ -444,9 +444,9 @@ TEST(PrintWideCStringTest, Null) {
 // Tests that wide C strings are escaped properly.
 TEST(PrintWideCStringTest, EscapesProperly) {
   const wchar_t s[] = {'\'', '"', '?', '\\', '\a', '\b', '\f', '\n', '\r',
-                       '\t', '\v', 0xD3, 0x576, 0x8D3, 0xC74D, ' ', 'a', '\0'};
+                       ' ', '\v', 0xD3, 0x576, 0x8D3, 0xC74D, ' ', 'a', '\0'};
   EXPECT_EQ(PrintPointer(s) + " pointing to L\"'\\\"?\\\\\\a\\b\\f"
-            "\\n\\r\\t\\v\\xD3\\x576\\x8D3\\xC74D a\"",
+            "\\n\\r\ \\v\\xD3\\x576\\x8D3\\xC74D a\"",
             Print(static_cast<const wchar_t*>(s)));
 }
 #endif  // native wchar_t
@@ -660,9 +660,9 @@ TEST(PrintArrayTest, BigArray) {
 
 // ::std::string.
 TEST(PrintStringTest, StringInStdNamespace) {
-  const char s[] = "'\"?\\\a\b\f\n\0\r\t\v\x7F\xFF a";
+  const char s[] = "'\"?\\\a\b\f\n\0\r \v\x7F\xFF a";
   const ::std::string str(s, sizeof(s));
-  EXPECT_EQ("\"'\\\"?\\\\\\a\\b\\f\\n\\0\\r\\t\\v\\x7F\\xFF a\\0\"",
+  EXPECT_EQ("\"'\\\"?\\\\\\a\\b\\f\\n\\0\\r\ \\v\\x7F\\xFF a\\0\"",
             Print(str));
 }
 
@@ -684,9 +684,9 @@ TEST(PrintStringTest, StringAmbiguousHex) {
 #if GTEST_HAS_STD_WSTRING
 // ::std::wstring.
 TEST(PrintWideStringTest, StringInStdNamespace) {
-  const wchar_t s[] = L"'\"?\\\a\b\f\n\0\r\t\v\xD3\x576\x8D3\xC74D a";
+  const wchar_t s[] = L"'\"?\\\a\b\f\n\0\r \v\xD3\x576\x8D3\xC74D a";
   const ::std::wstring str(s, sizeof(s)/sizeof(wchar_t));
-  EXPECT_EQ("L\"'\\\"?\\\\\\a\\b\\f\\n\\0\\r\\t\\v"
+  EXPECT_EQ("L\"'\\\"?\\\\\\a\\b\\f\\n\\0\\r\ \\v"
             "\\xD3\\x576\\x8D3\\xC74D a\\0\"",
             Print(str));
 }
@@ -770,9 +770,9 @@ TEST(PrintStringViewTest, SimpleStringView) {
 }
 
 TEST(PrintStringViewTest, UnprintableCharacters) {
-  const char str[] = "NUL (\0) and \r\t";
+  const char str[] = "NUL (\0) and \r ";
   const internal::StringView sp(str, sizeof(str) - 1);
-  EXPECT_EQ("\"NUL (\\0) and \\r\\t\"", Print(sp));
+  EXPECT_EQ("\"NUL (\\0) and \\r\ \"", Print(sp));
 }
 
 #endif  // GTEST_INTERNAL_HAS_STRING_VIEW

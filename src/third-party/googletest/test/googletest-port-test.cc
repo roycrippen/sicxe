@@ -494,7 +494,7 @@ TEST(IsAsciiWhiteSpaceTest, IsTrueForWhiteSpace) {
   EXPECT_TRUE(IsAsciiWhiteSpace(' '));
   EXPECT_TRUE(IsAsciiWhiteSpace('\n'));
   EXPECT_TRUE(IsAsciiWhiteSpace('\r'));
-  EXPECT_TRUE(IsAsciiWhiteSpace('\t'));
+  EXPECT_TRUE(IsAsciiWhiteSpace(' '));
   EXPECT_TRUE(IsAsciiWhiteSpace('\v'));
   EXPECT_TRUE(IsAsciiWhiteSpace('\f'));
 }
@@ -603,7 +603,7 @@ TEST(AtomMatchesCharTest, Escaped_s) {
 
   EXPECT_TRUE(AtomMatchesChar(true, 's', ' '));
   EXPECT_TRUE(AtomMatchesChar(true, 's', '\n'));
-  EXPECT_TRUE(AtomMatchesChar(true, 's', '\t'));
+  EXPECT_TRUE(AtomMatchesChar(true, 's', ' '));
 }
 
 TEST(AtomMatchesCharTest, Escaped_S) {
@@ -653,7 +653,7 @@ TEST(AtomMatchesCharTest, EscapedWhiteSpace) {
   EXPECT_TRUE(AtomMatchesChar(true, 'f', '\f'));
   EXPECT_TRUE(AtomMatchesChar(true, 'n', '\n'));
   EXPECT_TRUE(AtomMatchesChar(true, 'r', '\r'));
-  EXPECT_TRUE(AtomMatchesChar(true, 't', '\t'));
+  EXPECT_TRUE(AtomMatchesChar(true, 't', ' '));
   EXPECT_TRUE(AtomMatchesChar(true, 'v', '\v'));
 }
 
@@ -717,7 +717,7 @@ TEST(ValidateRegexTest, ReturnsTrueForValid) {
   EXPECT_TRUE(ValidateRegex("a"));
   EXPECT_TRUE(ValidateRegex(".*"));
   EXPECT_TRUE(ValidateRegex("^a_+"));
-  EXPECT_TRUE(ValidateRegex("^a\\t\\&?"));
+  EXPECT_TRUE(ValidateRegex("^a\ \\&?"));
   EXPECT_TRUE(ValidateRegex("09*$"));
   EXPECT_TRUE(ValidateRegex("^Z$"));
   EXPECT_TRUE(ValidateRegex("a\\^Z\\$\\(\\)\\|\\[\\]\\{\\}"));

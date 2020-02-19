@@ -179,8 +179,8 @@ TEST_F(XmlOutputChangeDirTest, PreserveOriginalWorkingDirWithRelativePath) {
 
 TEST_F(XmlOutputChangeDirTest, PreserveOriginalWorkingDirWithAbsoluteFile) {
 #if GTEST_OS_WINDOWS
-  GTEST_FLAG(output) = "xml:c:\\tmp\\filename.abc";
-  EXPECT_EQ(FilePath("c:\\tmp\\filename.abc").string(),
+  GTEST_FLAG(output) = "xml:c:\ mp\\filename.abc";
+  EXPECT_EQ(FilePath("c:\ mp\\filename.abc").string(),
             UnitTestOptions::GetAbsolutePathToOutputFile());
 #else
   GTEST_FLAG(output) ="xml:/tmp/filename.abc";
@@ -191,7 +191,7 @@ TEST_F(XmlOutputChangeDirTest, PreserveOriginalWorkingDirWithAbsoluteFile) {
 
 TEST_F(XmlOutputChangeDirTest, PreserveOriginalWorkingDirWithAbsolutePath) {
 #if GTEST_OS_WINDOWS
-  const std::string path = "c:\\tmp\\";
+  const std::string path = "c:\ mp\\";
 #else
   const std::string path = "/tmp/";
 #endif

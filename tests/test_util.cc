@@ -117,7 +117,7 @@ string StripWhitespace(const string& str) {
   string rv = str;
   size_t len = 0;
   for (int i = rv.size() - 1; i >= 0; i--) {
-    if (rv[i] != ' ' && rv[i] != '\t' && rv[i] != '\n') {
+    if (rv[i] != ' ' && rv[i] != ' ' && rv[i] != '\n') {
       len = i + 1;
       break;
     }
